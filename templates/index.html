@@ -1,1 +1,7 @@
-<h4>Hello! Welcome to &quot; News Management Portal &quot;</h4>
+<h3>Hello! from &quot; News Management Portal &quot;</h3>
+<h4>Available Categories: </h4>
+{% for category in categoryList %}
+<p>{{category[0]}}</p>
+{% endfor %}
+<hr/>
+<input type="submit" value="Fetch News"/>
