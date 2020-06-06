@@ -1,7 +1,20 @@
 <h3>Hello! from &quot; News Management Portal &quot;</h3>
-<h4>Available Categories: </h4>
+<h4>Available Categories:</h4>
 {% for category in categoryList %}
 <p>{{category[0]}}</p>
 {% endfor %}
-<hr/>
-<input type="submit" value="Fetch News"/>
+<hr />
+<h3>Fetch news</h3>
+<form method="POST" action="">
+    <h4>Select category:</h4>
+  <select name="category">
+    {% for category in categoryList %}
+    <option value="{{category[0]}}">{{category[0]}}</option>
+    {% endfor %}
+  </select>
+  <h4>From:</h4>
+  <input type="date" name="fromDate">
+  <h4>To:</h4>
+  <input type="date" name="toDate">
+  <input type="submit" value="Fetch News" />
+</form>
