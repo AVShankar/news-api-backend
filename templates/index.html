@@ -1,8 +1,15 @@
 <h3>Hello! from &quot; News Management Portal &quot;</h3>
 <h4>Available Categories:</h4>
+{% if categoryList %}
 {% for category in categoryList %}
 <p>{{category[0]}}</p>
 {% endfor %}
+{% else %}
+<h4>No record found</h4>
+{% endif %}
+<hr />
+<h3>List news</h3>
+<a href="/list-news">List news from DB</a>
 <hr />
 <h3>Fetch news</h3>
 <form method="POST" action="">
