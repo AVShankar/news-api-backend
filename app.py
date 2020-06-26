@@ -39,7 +39,7 @@ def fetch_news():
     fromDate = request.args.get('from')
     toDate = request.args.get('to')
     apiKey = '2b77b1785b9d4ea6ab7eea9c12d4a9e8'
-    if(category and fromDate and toDate != ""):
+    if(category and fromDate and toDate != None):
         newsURL = 'https://newsapi.org/v2/everything?q='+category+'&from=' + \
             fromDate+'&to='+toDate+'&sortBy=relevancy&apiKey='+apiKey
         content = requests.get(newsURL)
@@ -63,7 +63,10 @@ def fetch_news():
         })
 
     else:
-        return jsonify({"Error": "Something went wrong!"})
+        return jsonify({
+            "Error": "Please match the required format",
+            "To_Fetch-News": "/fetch-news?category={available-Category}&from={yyyy-mm-dd}&to={yyyy-mm-dd}"
+            })
 
 
 @app.route('/categories')
@@ -85,8 +88,9 @@ def list_news():
     category = request.args.get('category')
     fromDate = request.args.get('from')
     toDate = request.args.get('to')
+    print(toDate)
 
-    if(category and fromDate and toDate != ""):
+    if(category and fromDate and toDate != None):
         fromDate = time.mktime(datetime.datetime.strptime(
             fromDate[:10], "%Y-%m-%d").timetuple())
         fromDate = str(math.floor(fromDate))
@@ -102,7 +106,10 @@ def list_news():
             return jsonify({"Error": "No records found with the given constraints"})
 
     else:
-        return jsonify({"Error": "Please match the required format"})
+        return jsonify({
+            "Error": "Please match the required format",
+            "To_List-News": "/list-news?category={available-Category}&from={yyyy-mm-dd}&to={yyyy-mm-dd}",
+        })
 
 
 if __name__ == '__main__':
