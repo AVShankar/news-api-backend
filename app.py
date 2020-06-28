@@ -27,7 +27,7 @@ def api_root():
         "For_Categories": "/categories",
         "To_Fetch-News": "/fetch-news?category={available-Category}&from={yyyy-mm-dd}&to={yyyy-mm-dd}",
         "To_List-News": "/list-news?category={available-Category}&from={yyyy-mm-dd}&to={yyyy-mm-dd}",
-        "Z-Note": "Required params to be passed to get valid response"
+        "Z-Note": "Required params should be passed to get valid response"
     })
 
 
@@ -73,7 +73,7 @@ def fetch_news():
 def categories():
     connection = mysql.connect()
     cur = connection.cursor()
-    result = cur.execute('SELECT * FROM categories')
+    result = cur.execute('SELECT DISTINCT Category FROM news')
     if result > 0:
         categoryList = cur.fetchall()
         return jsonify({"availableCategories": categoryList})
